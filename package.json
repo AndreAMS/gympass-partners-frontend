@@ -1,5 +1,5 @@
 {
-  "name": "with-react-bootstrap",
+  "name": "partners-frontend",
   "version": "0.1.0",
   "author": "Wenzhi Li",
   "license": "MIT",
@@ -9,10 +9,16 @@
     "start": "next start"
   },
   "dependencies": {
+    "@vercel/node": "^1.9.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
+    "mongodb": "^3.6.4",
     "next": "latest",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@types/mongodb": "^3.6.6"
   }
 }

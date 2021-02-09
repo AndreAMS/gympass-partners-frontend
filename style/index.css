@@ -1,11 +1,92 @@
 /* ensure all pages have Bootstrap CSS */
 @import '~bootstrap/dist/css/bootstrap.min.css';
-
+body{
+  background: url('../public/bg.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #4A4545;
+}
+.text-mutted{
+  color: #E19A93;
+}
+.smaller{
+  font-size: 0.3em;
+}
+.custom-nav a{
+  color: #4A4545;
+}
+.custom-nav a:hover {
+  color: #E19A93;
+}
+#dashboard{
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.7);
+}
+.title{
+  font-size: 20px;
+  color: #E19A93;
+  font-weight: 700;
+}
 .md-container {
-  max-width: 800px;
-  padding-top: 2rem;
+  margin-top: 2%;
+  
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid;
+  border-color: rgba(255, 255, 255, 0.5);
+  min-height: 85vh;
+ 
+}
+.checkin-list{
+  max-height: 45vh;
+  overflow-y: scroll;
+}
+.checkin-list::-webkit-scrollbar-track {
+  border-radius: 9px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.checkin-list::-webkit-scrollbar {
+  border-radius: 9px;
+  width: 6px;
+  background: rgba(255, 255, 255, 0.2);
+}
+.checkin-list::-webkit-scrollbar-thumb {
+  background: #F0B1AB;
+  border-radius: 9px;
+}
+.nav-box{
+  border-right: 1px solid #F0B1AB;
+  min-height: 85vh;
 }
 
+.menu-title{
+  font-size: 18px;
+  color: #E19A93;
+  font-weight: 700;
+}
+
+.media-list{
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid;
+  border-color: rgba(255, 255, 255, 0.5);
+  padding: 15px 0px;
+}
+.media-list h5{
+  color: #fc695a;
+}
+.media-list .picture{
+  width: 94px;
+  height: 94px;
+  overflow: hidden;
+  border-radius: 9px 0px 9px 0px;
+  border-bottom: 2px solid #F0B1AB;
+  border-right: 2px solid #F0B1AB;
+
+}
+.media-list small{
+  color: #4A4545;
+}
 .sml-card {
   width: 22rem;
   margin: 1rem 0;
@@ -18,9 +99,14 @@
   align-items: center;
   justify-content: center;
   border-top: 1px solid #ccc;
+  text-align: center;
+  
+}
+.cntr-footer a{
+  color: #4A4545;
+  font-size: 14px;
 }
 
 .sml-logo {
-  height: 1em;
-  margin-left: 10px;
+  height: 1.8em;
 }

@@ -9,10 +9,17 @@ import axios from 'axios'
 
 export default function Home() {
   
+  
+  // const [email, setEmail] = useState('');
+  // const insertToken = (e) =>{
+  //   e.preventDefault();
+  //   axios.post('/api/insert', {email});
+  // }
+
   const [email, setEmail] = useState('');
   const insertToken = (e) =>{
     e.preventDefault();
-    axios.post('/api/insert', {email});
+    axios.post('/api/validate', {email});
   }
   return (
     <Container >

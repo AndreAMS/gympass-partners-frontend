@@ -4,22 +4,19 @@ import { Nav, Navbar } from 'react-bootstrap'
 const Menu = () => {
     return (
         <>
-        <h3 className="menu-title">GENERAL</h3>
+        <h3 className="menu-title mt-5">GENERAL</h3>
         <Nav defaultActiveKey="/home" className="flex-column custom-nav">
-            <Nav.Link href="/home">Active</Nav.Link>
-            <Nav.Link eventKey="link-1">Link</Nav.Link>
-            <Nav.Link eventKey="link-2">Link</Nav.Link>
-        
+            <Nav.Link href="/home"><img src="/fi-rr-dashboard.svg" width="17"/> Dashbord</Nav.Link>
+            <Nav.Link eventKey="link-1"><img src="/fi-rr-users.svg" width="17"/> Clients</Nav.Link>
+           
         </Nav>
        
-        <h3 className="menu-title">BUSSINESS</h3>
+        <h3 className="menu-title mt-3">BUSSINESS</h3>
         <Nav defaultActiveKey="/home" className="flex-column custom-nav">
-            <Nav.Link href="/home">Active</Nav.Link>
-            <Nav.Link eventKey="link-1">Link</Nav.Link>
-            <Nav.Link eventKey="link-2">Link</Nav.Link>
-            <Nav.Link eventKey="disabled" disabled>
-                Disabled
-            </Nav.Link>
+            <Nav.Link href="/home"><img src="/fi-rr-gym.svg" width="17"/> Activities</Nav.Link>
+            <Nav.Link eventKey="link-1"><img src="/fi-rr-calendar.svg" width="17"/> Schedule</Nav.Link>
+            <Nav.Link eventKey="link-2"><img src="/fi-rr-stats.svg" width="17"/> Reports</Nav.Link>
+            
         </Nav>
         </>
     )

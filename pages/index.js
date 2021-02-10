@@ -42,20 +42,23 @@ export default function Home() {
           <Col className="col-9  pt-3 main">
            <div className="row">
              <div className="col-9">
-          <h1>
-           <small className="text-mutted">Welcome back,</small> <br></br>
-           Cobra Kai <br></br>
-         
+             <h3>
+           <small className="text-mutted">Welcome back,</small>
+           </h3>
+           <h1 className="section-title">
+           Cobra Kai  <br></br>
+           <small><i>(Karate Studio)</i></small>
           </h1>
+         
           </div>
           <div className="col-3">
-          <p className="text-right"><img src="/fi-rr-calendar.svg" width="32"/>   <img src="/fi-rr-calendar.svg" width="32"/>   <img src="/fi-rr-calendar.svg" width="32"/>   </p>
+          <p className="text-right"><img src="/fi-rr-bell.svg" width="26" className="ml-3"/><img src="/fi-rr-settings.svg" width="26" className="ml-3"/><img src="/fi-rr-sign-out.svg" width="26" className="ml-3"/></p>
           </div>
           </div>
               <Form onSubmit={insertToken} >
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control type="text" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                  <Form.Label>Token Validator</Form.Label>
+                  <Form.Control type="text" placeholder="Enter token" value={email} onChange={(e) => setEmail(e.target.value)} />
 
                 </Form.Group>
                 <Button variant="primary" type="submit">
@@ -79,9 +82,11 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Made with by <br></br>          <img src="/andre-augusto-logo.webp" alt="André Augusto - Frontend Developer" className="sml-logo" />
+          Made with <img src="/fi-rr-heart.svg" width="18"/> by <br></br>          <img src="/andre-augusto-logo.webp" alt="André Augusto - Frontend Developer" className="sml-logo" />
         </a>
       </footer>
     </Container>
   )
 }
+
+

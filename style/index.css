@@ -6,6 +6,24 @@ body{
   background-repeat: no-repeat;
   color: #4A4545;
 }
+::-webkit-scrollbar-track {
+  border-radius: 9px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+::-webkit-scrollbar {
+  border-radius: 9px;
+  width: 6px;
+  background: rgba(255, 255, 255, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background: #F0B1AB;
+  border-radius: 9px;
+}
+.loading{
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+}
 .text-mutted{
   color: #E19A93;
 }

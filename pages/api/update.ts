@@ -25,16 +25,17 @@ async function connectToDatabase(uri: string){
 }
 
 export default async (request: NowRequest, response:NowResponse) =>{
-  const db = await connectToDatabase(process.env.MONGODB_URI);
+
   const { email } = request.body;
-  const checkins = await db
-  .collection("tokens")
-  .find({email})
-  .sort({ metacritic: -1 })
-  .limit(20)
-  .toArray();
+  const db = await connectToDatabase(process.env.MONGODB_URI);
 
-  return response.status(201).json(checkins);
+  const collection = db.collection('tokens');
+  await collection.updateOne({
+    email  : email 
+  },
+  {
+    checkinAt: new Date()
+  },)
 
+  return response.status(201).json({ok : true});
 }
-

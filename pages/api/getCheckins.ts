@@ -30,8 +30,8 @@ export default async (request: NowRequest, response:NowResponse) =>{
 
   const checkins = await db
     .collection("tokens")
-    .find({})
-    .sort({ metacritic: -1 })
+    .find({checkin : true})
+    .sort({ checkinAt: -1 })
     .limit(20)
     .toArray();
 

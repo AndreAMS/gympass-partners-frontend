@@ -26,16 +26,17 @@ async function connectToDatabase(uri: string){
 
 export default async (request: NowRequest, response:NowResponse) =>{
 
-  const { email } = request.body;
+  const { token } = request.body;
   const db = await connectToDatabase(process.env.MONGODB_URI);
 
   const collection = db.collection('tokens');
-  await collection.updateOne({
-    email  : email 
-  },
-  {
-    checkinAt: new Date()
-  },)
+  const filter = {token: token}
+  const doc = {$set: {checkin: true, checkinAt: new Date()}}
+  const options = {new: true}
+  await collection.findOneAndUpdate(filter, doc, (err, doc) =>{
+    if(err) console.log("Error when updating data")
+    console.log(doc)
+  })
 
   return response.status(201).json({ok : true});
 }

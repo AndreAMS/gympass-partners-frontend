@@ -26,10 +26,10 @@ async function connectToDatabase(uri: string){
 
 export default async (request: NowRequest, response:NowResponse) =>{
   const db = await connectToDatabase(process.env.MONGODB_URI);
-  const { email } = request.body;
+  const { token } = request.body;
   const checkins = await db
   .collection("tokens")
-  .find({email})
+  .find({token})
   .sort({ metacritic: -1 })
   .limit(20)
   .toArray();

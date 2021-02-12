@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import Head from 'next/head'
 import { Container, Row, Col, Button, Form } from 'react-bootstrap'
 import Menu from '../components/Menu'
@@ -6,6 +6,9 @@ import Header from '../components/Header'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import CheckinsList from '../components/CheckinsList'
+import dynamic from 'next/dynamic'
+const QrReader = dynamic(() => import('react-qr-reader'), {
+  ssr: false})
 import Media from 'react-bootstrap/Media'
 import axios from 'axios'
 
@@ -20,7 +23,8 @@ function Home() {
   //   e.preventDefault();
   //   axios.post('/api/insert', {email});
   // }
-
+  const qrRef = useRef(null)
+  const [scanResultFile, setScanResultFile] = useState('');
   const [token, setToken] = useState('');
   const [emailSubmit, setEmailSubmit] = useState(false);
   const [message, setMessage] = useState(false)
@@ -69,17 +73,30 @@ function Home() {
       console.log(err)
     })
   },[emailSubmit])
+
+  const handleErrorFile = (error) =>{
+    console.log(error)
+  }
+  const handleScanFile = (result) => {
+    if(result){
+      setScanResultFile(result)
+    }
+  }
+  const onScanFile = () =>{
+    qrRef.current.openImageDialog();
+  }
   return (
     <Container >
       <Head>
         <title>Gympass - Partners Portal</title>
+        <meta name="theme-color" content="#fc695a"/>
         <link rel="icon" href="/favicon-32x32.png" />
       </Head>
       <Container className="md-container">
         <Row>
           <Col className="col-3 nav-box pt-3 d-none d-md-block">
             <h1 className="text-center">
-              <img src="/gympass-for-partners-logo.svg" width="200" />
+              <img src="/gympass-for-partners-logo.svg" max-width="200" className="img-fluid"/>
             </h1>
             
             <Menu>
@@ -89,6 +106,7 @@ function Home() {
           </Col>
           <Col className="col-12 col-md-9  pt-3 main">
           <Header></Header>
+          <h3>Codigo escaneado: {scanResultFile}</h3>
               <Form onSubmit={insertToken} >
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Token Validator</Form.Label>
@@ -98,6 +116,17 @@ function Home() {
                 <Button variant="primary" type="submit" >
                   Check
                 </Button>
+                <Button variant="primary" onClick={onScanFile}>
+                Scan  QrCode
+                </Button>
+                <QrReader
+                  ref={qrRef}
+                  delay={300}
+                  style={{width:'100%'}}
+                  onError={handleErrorFile}
+                  onScan={handleScanFile}
+                  
+                />
               </Form>
           
           <hr></hr>

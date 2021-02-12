@@ -19,6 +19,12 @@ body{
   background: #F0B1AB;
   border-radius: 9px;
 }
+.logo{
+  max-width: 200px;
+}
+.logo-mobile{
+  border-bottom: 1px solid #F0B1AB;
+}
 .loading{
   width: 180px;
   height: 180px;

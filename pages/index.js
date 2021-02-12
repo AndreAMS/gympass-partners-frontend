@@ -24,13 +24,15 @@ function Home() {
   //   axios.post('/api/insert', {email});
   // }
   const qrRef = useRef(null)
-  const [scanResultFile, setScanResultFile] = useState('');
+  const [scanResultFile, setScanResultFile] = useState();
   const [token, setToken] = useState('');
   const [emailSubmit, setEmailSubmit] = useState(false);
-  const [message, setMessage] = useState(false)
-  const insertToken = (e) =>{
-    e.preventDefault();
-    console.log("parte1");
+  const [tokenQr, setTokenQr] = useState(false)
+  const [showScan, setShowScan] = useState(false);
+  const validateToken = () =>{
+    if(token !== ''){
+
+    
     axios.post('/api/validate', {token})
     .then(res => {
       if(res.data.length !== 0){
@@ -54,6 +56,13 @@ function Home() {
     .catch(err => {
       console.log(err)
     })
+  } else{
+    toast.error('Token could not be empty', {position: toast.POSITION.TOP_CENTER_CENTER})
+  }
+  }
+  const insertToken = (e) =>{
+    e.preventDefault();
+   validateToken()
     
   }
   
@@ -80,11 +89,20 @@ function Home() {
   const handleScanFile = (result) => {
     if(result){
       setScanResultFile(result)
+      setToken(result)
+      setTokenQr(true)
+      setShowScan(false)
+      
     }
   }
-  const onScanFile = () =>{
-    qrRef.current.openImageDialog();
-  }
+
+  useEffect(() =>{ 
+    if(token !== '' && tokenQr === true){
+    validateToken()
+    setTokenQr(false)
+    }
+  },[tokenQr])
+
   return (
     <Container >
       <Head>
@@ -96,7 +114,7 @@ function Home() {
         <Row>
           <Col className="col-3 nav-box pt-3 d-none d-md-block">
             <h1 className="text-center">
-              <img src="/gympass-for-partners-logo.svg" max-width="200" className="img-fluid"/>
+              <img src="/gympass-for-partners-logo.svg" className="img-fluid logo"/>
             </h1>
             
             <Menu>
@@ -106,29 +124,42 @@ function Home() {
           </Col>
           <Col className="col-12 col-md-9  pt-3 main">
           <Header></Header>
-          <h3>Codigo escaneado: {scanResultFile}</h3>
+          
               <Form onSubmit={insertToken} >
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Token Validator</Form.Label>
                   <Form.Control type="text" placeholder="Please enter a token" value={token} onChange={(e) => setToken(e.target.value)} />
 
                 </Form.Group>
-                <Button variant="primary" type="submit" >
+                <Button variant="primary" type="submit" className="mr-2 mb-2">
                   Check
                 </Button>
-                <Button variant="primary" onClick={onScanFile}>
+               
+                {showScan ? (
+                <QrReader
+                ref={qrRef}
+                delay={300}
+                style={{width:'100%'}}
+                onError={handleErrorFile}
+                onScan={handleScanFile}
+                
+               
+              />
+                 
+                ):(
+                  <>
+                  <span  className="d-md-none d-sm-block">
+                  or
+                  
+                  <Button variant="primary" onClick={(e) => setShowScan(true)} className="ml-2 mb-2 d-md-none d-sm-block">                   
                 Scan  QrCode
                 </Button>
-                <QrReader
-                  ref={qrRef}
-                  delay={300}
-                  style={{width:'100%'}}
-                  onError={handleErrorFile}
-                  onScan={handleScanFile}
-                  
-                />
+                </span>
+                </>
+                )}
+                
               </Form>
-          
+             
           <hr></hr>
           
          
